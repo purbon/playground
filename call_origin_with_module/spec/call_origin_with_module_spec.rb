@@ -13,13 +13,13 @@ describe "CallOriginWithModule" do
   end
 
    it "calls the dump once" do
-    expect(JrJackson::Raw).to receive(:dump).with([3,-3]).and_call_original
-    expect(AClass.nap(-3)).to eq("[3,-3]")
+    expect(JrJackson::Json).to receive(:dump).with({:source=>3, :target=>-3}).and_call_original
+    expect(AClass.nap(-3)).to eq("{\"source\":3,\"target\":-3}")
   end
 
   it "calls the dump twice" do
-    expect(JrJackson::Raw).to receive(:dump).with([3,3]).and_call_original
-    expect(AClass.nap(3)).to eq("[3,3]")
+    expect(JrJackson::Json).to receive(:dump).with({:source=>3, :target=>3}).and_call_original
+    expect(AClass.nap(3)).to eq("{\"source\":3,\"target\":3}")
   end
 
   describe "without using call original" do
